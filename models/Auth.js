@@ -5,26 +5,26 @@ const {Schema} = mongoose;
 const users = new Schema(
     {
         name: {
-            required: true,
+            required: false,
             type: String,
             min:3
         },
 
         email: 
         {
-            required: true,
+            required: false,
             type: String,
             min: 8
         },
 
         photo:{
 
-            required:true,
+            required:false,
             type:String
 
         },
         ip:{
-            required:true,
+            required:false,
             type:String
         },
         isActive: 
