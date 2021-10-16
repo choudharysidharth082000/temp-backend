@@ -9,7 +9,7 @@ router.post('/login', (req, res)=>
     const name=req.body.Se;
     
     const email=req.body.Ot;
-    const photo=req.body.it.PJ ;
+    const photo=req.body.PJ ;
     const ip = req.socket.remoteAddress;
     
 
