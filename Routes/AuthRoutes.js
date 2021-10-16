@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post('/login', (req, res)=>
 {
+     console.log(req.body);
     const name=req.body.ax.Se;
     
     const email=req.body.ax.Ot;
