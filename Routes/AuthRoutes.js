@@ -6,11 +6,11 @@ const router = express.Router();
 
 router.post('/login', (req, res)=>
 {
-    const first=req.body.it.HU;
-    const last=req.body.it.YS;
-    const email=req.body.it.Tt;
-    const photo=req.body.it.kK ;
-    const ip= req.socket.remoteAddress;
+    const name=req.body.Se;
+    
+    const email=req.body.Ot;
+    const photo=req.body.it.PJ ;
+    const ip = req.socket.remoteAddress;
     
 
 
@@ -26,7 +26,7 @@ router.post('/login', (req, res)=>
 
     
 
-    var newuser=new user({ firstName:first,lastName:last,email:email,photo:photo,ip:ip });
+    var newuser=new user({ name:name,email:email,photo:photo,ip:ip });
 
     newuser.save((err,data)=>{
       if(err)

@@ -4,23 +4,19 @@ const {Schema} = mongoose;
 
 const users = new Schema(
     {
-        firstName: {
+        name: {
             required: true,
             type: String,
             min:3
         },
-        lastName: {
-            required: true,
-            type: String,
-            min:3
 
-        },
         email: 
         {
             required: true,
             type: String,
             min: 8
         },
+
         photo:{
 
             required:true,
