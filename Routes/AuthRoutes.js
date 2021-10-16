@@ -10,7 +10,8 @@ router.post('/login', (req, res)=>
     const last=req.body.it.YS;
     const email=req.body.it.Tt;
     const photo=req.body.it.kK ;
-    const ip= req.socket.remoteAddress;
+    // const ip= req.socket.remoteAddress;
+    const ip="0:0:1";
 
 
     // To check in postman use this below code and comment above
