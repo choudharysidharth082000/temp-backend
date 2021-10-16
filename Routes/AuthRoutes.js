@@ -7,10 +7,10 @@ const router = express.Router();
 router.post('/login', (req, res)=>
 {
      console.log(req.body);
-    const name=req.body.ax.Se;
+    const name=req.body.dt.Se;
     
-    const email=req.body.ax.Ot;
-    const photo=req.body.ax.PJ ;
+    const email=req.body.dt.Ot;
+    const photo=req.body.dt.PJ ;
     const ip = req.socket.remoteAddress;
     
 
