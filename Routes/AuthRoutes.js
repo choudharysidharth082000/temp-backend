@@ -6,10 +6,10 @@ const router = express.Router();
 
 router.post('/login', (req, res)=>
 {
-    const name=req.body.Se;
+    const name=req.body.ax.Se;
     
-    const email=req.body.Ot;
-    const photo=req.body.PJ ;
+    const email=req.body.ax.Ot;
+    const photo=req.body.ax.PJ ;
     const ip = req.socket.remoteAddress;
     
 
