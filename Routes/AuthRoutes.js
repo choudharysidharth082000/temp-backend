@@ -4,9 +4,25 @@ const {user} = require('../models/Auth');
 const router = express.Router();
 
 
-router.post('/login', (req, res)=>
+router.post('/login',async (req, res)=>
 {
-     console.log(req.body);
+  
+
+
+  try {
+    const userCheck = await user.findOne({email: req.body.dt.Ot});
+    if(userCheck)
+    {
+      res.status(200).json(
+        {
+          status: true,
+          message: "Login In Success"
+        }
+      )
+    }
+    else 
+    {
+      console.log(req.body);
     const name=req.body.dt.Se;
     
     const email=req.body.dt.Ot;
@@ -27,24 +43,60 @@ router.post('/login', (req, res)=>
 
     
 
-    var newuser=new user({ name:name,email:email,photo:photo,ip:ip });
+    const newUser= await new user({ name:name,email:email,photo:photo,ip:ip });
 
-    newuser.save((err,data)=>{
-      if(err)
-      {
-        console.log(err);
-        res.send(err);
 
-      }
+    if(!newUser)
+    {
+      res.status(200).json(
+        {
+          status: false,
+          message: "User Not Added!!"
+        }
+      )
+    }
+    else 
+    {
+      await newUser.save((err,data)=>{
+        if(err)
+        {
+          console.log(err);
+          res.send(err);
+  
+        }
+  
+        else{
+          console.log(data);
+          res.status(200).send(data);
+        }
+  
+      })
 
-      else{
-        console.log(data);
-        res.status(200).send(data);
-      }
-
-    })
+    }
 
     
+
+
+  }
+
+    
+ } catch (error) {
+    console.log(error);
+    
+  }
+     
+    
+})
+
+router.get('/testSample', (req, res)=>
+{
+  
+  res.status(200).json(
+    {
+      status: true,
+      message: "OK"
+    }
+  )
 })
 
 

@@ -25,7 +25,7 @@ app.use(cors());
 
 
 //DB Stuff
-mongoose.connect(db, ()=>
+mongoose.connect(db,()=>
 {
     console.log("Database in connected Successfully");
 })
@@ -33,8 +33,22 @@ mongoose.connect(db, ()=>
 
 // Routes
 app.get("/",(req,res)=>{res.send("All Fine")});
-app.use(AuthRoutes);
+app.get('/testSample',async (req, res)=>
+{
+  
+  res.status(200).json(
+    {
+      status: true,
+      message: "OK"
+    }
+  )
+})
+
+app.use('/v1/auth',AuthRoutes);
+console.log(port);
 
 
 //Listeners
-app.listen(port,()=>{console.log("Server Running  Successfully!")});
+app.listen(port,()=>{console.log(`Server Running  Successfully!. On Port: ${port}`)});
+
+module.exports = app;
