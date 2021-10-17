@@ -39,7 +39,7 @@ router.post('/login', (req, res)=>
 
       else{
         console.log(data);
-        res.send(data);
+        res.status(200).send(data);
       }
 
     })
