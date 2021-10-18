@@ -7,7 +7,8 @@ const router = express.Router();
 router.post('/login',async (req, res)=>
 {
   
-
+ 
+   //* Initially checking if we have the user in our DB or not and if not then only er are pushing into DB */
 
   try {
     const userCheck = await user.findOne({email: req.body.dt.Ot});
