@@ -4,9 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server"
+    "test": "jest --watch-all",
+    "start": "nodemon server"
   },
+  
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -15,6 +16,12 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.0.11",
-    "nodemon": "^2.0.13"
+    "nodemon": "^2.0.13",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
+  },
+  "devDependencies": {
+    "jest": "^27.2.5",
+    "supertest": "^6.1.6"
   }
 }
