@@ -25,7 +25,10 @@ app.use(cors());
 
 
 //DB Stuff
-mongoose.connect(db,()=>
+const test = process.env.TEST
+console.log(test);
+
+mongoose.connect(test,()=>
 {
     console.log("Database in connected Successfully");
 })
@@ -49,6 +52,5 @@ console.log(port);
 
 
 //Listeners
-app.listen(port,()=>{console.log(`Server Running  Successfully!. On Port: ${port}`)});
-
 module.exports = app;
+
