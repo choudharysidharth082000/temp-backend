@@ -7,6 +7,8 @@ const bodyParser=require("body-parser");
 const cors=require("cors");
 const dotenv = require('dotenv');
 
+const userProfile = require('./Routes/userProfile')
+
 // Dotenv Stuff
 dotenv.config();
 const port = process.env.PORT;
@@ -48,6 +50,7 @@ app.get('/testSample',async (req, res)=>
 })
 
 app.use('/v1/auth',AuthRoutes);
+app.use('/v1/profile', userProfile);
 console.log(port);
 
 
