@@ -27,7 +27,7 @@ app.use(cors());
 
 
 //DB Stuff
-const test = process.env.TEST
+const test = process.env.DB
 console.log(test);
 
 mongoose.connect(db,()=>
