@@ -30,7 +30,7 @@ app.use(cors());
 const test = process.env.TEST
 console.log(test);
 
-mongoose.connect(test,()=>
+mongoose.connect(db,()=>
 {
     console.log("Database in connected Successfully");
 })

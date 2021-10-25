@@ -6,11 +6,13 @@ const router = express.Router();
 
 router.post('/login',async (req, res)=>
 {
+
+  console.log(req.body.it);
   
 
 
   try {
-    const userCheck = await user.findOne({email: req.body.dt.Ot});
+    const userCheck = await user.findOne({email: req.body.it.Tt});
     if(userCheck)
     {
       res.status(200).json(
@@ -23,10 +25,10 @@ router.post('/login',async (req, res)=>
     else 
     {
       console.log(req.body);
-    const name=req.body.dt.Se;
+    const name=req.body.it.Se;
     
-    const email=req.body.dt.Ot;
-    const photo=req.body.dt.PJ ;
+    const email=req.body.it.Tt;
+    const photo=req.body.it.SJ ;
     const ip = req.socket.remoteAddress;
     
 
