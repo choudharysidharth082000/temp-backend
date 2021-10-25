@@ -3,48 +3,8 @@
 // const request = require('supertest');
 // const app = require('../../server');
 
-// describe('Sample Test', ()=>
-// {
-//     it('First Test', ()=>
-//     {
-//         expect(true).toBe(true)
-//     })
-// })
 
-// describe('GET /v1/auth/sampleTest',()=>
-// {
-    
-//     it('Getting Rest Api', ()=>
-//     {
-//         request(app)
-//   .get('/v1/auth/sampleTest')
-//   .expect(200)
-//   .end(function(err, res) {
-//     if (err) throw err;
-//   });
-//     })
-// })
-const app = require("../../server");
-const mongoose = require("mongoose");
-const supertest = require("supertest");
-
-const dotenv = require('dotenv');
-
-
-dotenv.config();
-const test = process.env.TEST
-console.log(test);
-// beforeEach((done) => {
-//     mongoose.connect(test,
-//       { useNewUrlParser: true, useUnifiedTopology: true },
-//       () => done());
-//   });
-
-
-
-
-
-describe('Sample Api Testing', ()=>
+describe('Sample Test', ()=>
 {
       
     //   afterEach((done) => {
@@ -79,27 +39,12 @@ describe('Testing the Login Api Flow',  ()=>
 
     it('This is the testing phase',  async ()=>
     {
-        try {
-
-            //sending the response in order to check wether the posting is done or not
-            const response = await supertest(app).post('/v1/auth/login').send(
-                {
-                    name: "Sample",
-                    profile: "Sample Photo",
-                    ip: "IP ADdress",
-                    email: "email@gmail.com"
-                }
-            )
-            
-    
-            expect(true).toBe(true);
-            
-        } catch (error) {
-            
-            console.log(error);
-        }
-        
-
+        request(app)
+  .get('/v1/auth/testSample')
+  .expect(200)
+  .end(function(err, res) {
+    if (err) throw err;
+  });
     })
     // beforeEach((done) => {
 //     mongoose.connect(test,
