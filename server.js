@@ -7,6 +7,8 @@ const bodyParser=require("body-parser");
 const cors=require("cors");
 const dotenv = require('dotenv');
 
+const userProfile = require('./Routes/userProfile')
+
 // Dotenv Stuff
 dotenv.config();
 const port = process.env.PORT;
@@ -25,6 +27,9 @@ app.use(cors());
 
 
 //DB Stuff
+const test = process.env.DB
+console.log(test);
+
 mongoose.connect(db,()=>
 {
     console.log("Database in connected Successfully");
@@ -45,10 +50,10 @@ app.get('/testSample',async (req, res)=>
 })
 
 app.use('/v1/auth',AuthRoutes);
+app.use('/v1/profile', userProfile);
 console.log(port);
 
 
 //Listeners
-app.listen(port,()=>{console.log(`Server Running  Successfully!. On Port: ${port}`)});
-
 module.exports = app;
+
