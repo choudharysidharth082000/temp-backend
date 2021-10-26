@@ -113,6 +113,36 @@ router.post('/addProfile/:userID',upload.fields([
 })
 
 
+router.get('/getAllProfiles', async(req, res)=>
+{
+    try {
+        const users = await user.find();
+        if(!user)
+        {
+            res.status(200).json(
+                {
+                    status: false,
+                    message: "User Not Found"
+                }
+            )
+        }
+        else 
+        {
+            res.status(200).json(
+                {
+                    status: true,
+                    users: users
+                }
+            )
+        }
+        
+    } catch (error) {
+        
+        console.log(error);
+    }
+})
+
+
 router.get('/profileGet/:userID', async(req, res)=>
 {
     try {

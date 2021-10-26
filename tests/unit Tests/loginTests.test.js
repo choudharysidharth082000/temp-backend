@@ -1,57 +1,83 @@
+const app = require("../../server");
+const mongoose = require("mongoose");
+const supertest = require("supertest");
+const dotenv = require('dotenv');
+const {userProfile} = require('../../models/userProfile');
+const { getMaxListeners } = require("superagent");
+dotenv.config();
+const test = process.env.DB
 
 
-// const request = require('supertest');
-// const app = require('../../server');
 
 
-describe('Sample Test', ()=>
+
+
+describe('Checking the profile GET apis for the app', ()=>
 {
-      
-    //   afterEach((done) => {
-    //     mongoose.connection.dropDatabase(() => {
-    //       mongoose.connection.close(() => done())
-    //     });
-    //   });
-
-      it('GET /v1/auth/testSample', async ()=>
-      {
-          await supertest(app).get('/v1/auth/testSample').expect(200).then((response)=>
-          {
-            // expect(isObject(response.body)).toBeTruthy();
-            //chacking if the message of the response is OK
-              expect(response.body.message).toBe('OK');
-            //checking if the object response returning is true
-              expect(response.body.status).toBe(true)
-          })
-          
-      })
-})
-
-describe('Testing the Login Api Flow',  ()=>
-{
-    beforeEach((done)=>
-{
-    mongoose.connect(test,()=>
+  beforeEach((done)=>
+  {
+    mongoose.connect('mongodb+srv://Admin:rtWHkM4nac7qmdT8@cluster0.hgylf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', ()=>
     {
-        done()
-    } )
-})
-
-    it('This is the testing phase',  async ()=>
-    {
-        request(app)
-  .get('/v1/auth/testSample')
-  .expect(200)
-  .end(function(err, res) {
-    if (err) throw err;
-  });
+      console.log('Test DB Connected')
+      done()
     })
-    // beforeEach((done) => {
-//     mongoose.connect(test,
-//       { useNewUrlParser: true, useUnifiedTopology: true },
-//       () => done());
-//   });
-    
+  })
+  // afterEach(async (done)=>
+  // {
+  //   try {
+  //     const deleteUser = await userProfile.findOneAndDelete({email: 'samplemail@getMaxListeners.com'})
+      
+  //   } catch (error) {
+      
+  //     console.log(error);
+  //   }
+  // })
+  it('GET /v1/profile/GetProfile', async ()=>
+  {
+    await supertest(app).get('/v1/profile/getAllProfiles').then((response)=>
+    {
+      console.log(response.body);
+      expect(response.body.status).toBe(true)
+
+    })
+
+  })
 })
 
 
+describe('Testing the post apis for the server', ()=>
+{
+  beforeEach((done)=>
+  {
+    mongoose.connect('mongodb+srv://Admin:rtWHkM4nac7qmdT8@cluster0.hgylf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', ()=>
+    {
+      console.log('Test DB Connected')
+      done()
+    })
+  })
+
+  let data = {
+    name: "Sidharth",
+    mobileNumber: "7838777716",
+    facebookID: "https://facebook.com",
+    instagramID: "https://instagram.com",
+    whatsappNumber: "7838888816",
+    profileImage: "jnkjnjvdjkv"
+}
+
+it('POST /v1/profile/addProfile/wrong url', async ()=>
+{
+  await supertest(app)
+  .post("/v1/profile/addProfile/61766e443744277f906d8024")
+  .send(data)
+  .expect(200)
+  .then(async (response) => {
+    // Check the response
+    console.log(response.body);
+    expect(response.body.status).toBe(false)
+    
+  })
+
+})
+
+})
