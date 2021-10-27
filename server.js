@@ -37,7 +37,7 @@ mongoose.connect(db,()=>
 
 
 // Routes
-app.get("/",(req,res)=>{res.send("All Fine")});
+app.get("/",(req,res)=>{res.send("CI/CD  Implemented")});
 app.get('/testSample',async (req, res)=>
 {
   
