@@ -38,6 +38,7 @@ mongoose.connect(db,()=>
 
 // Routes
 app.get("/",(req,res)=>{res.send("CI/CD  Implemented")});
+
 app.get('/testSample',async (req, res)=>
 {
   
@@ -49,11 +50,21 @@ app.get('/testSample',async (req, res)=>
   )
 })
 
+
+// Add Website Route  Hadle it Accordingly
+app.post("/v1/addwebsite",(req,res)=>{
+  console.log(req.body);
+  res.send(req.body);
+})
+
+
+
+
 app.use('/v1/auth',AuthRoutes);
 app.use('/v1/profile', userProfile);
-console.log(port);
-
+console.log(port)
 
 //Listeners
+app.listen(port,()=>{});
 module.exports = app;
 
