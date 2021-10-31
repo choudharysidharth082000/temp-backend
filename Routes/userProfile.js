@@ -8,6 +8,76 @@ const {user} = require('../models/Auth');
 const fs = require('fs');
 
 
+
+
+router.post('/addUser', async(req, res)=>
+{
+    console.log(req.body);
+    const {name, mobileNumber, facebookID, instagramID, whatsappNumber} = req.body;
+    const data = {name, mobileNumber, facebookID, instagramID, whatsappNumber};
+    
+
+    const resultFromJoi = validateProfile('name mobileNumber facebookID instagramID whatsappNumber', data);
+    if(!resultFromJoi)
+    {
+        res.status(200).json(
+            {
+                status: false,
+                message: "Invalid Credential Details"
+            }
+        )
+    }
+    else 
+    {
+        try {
+            const user = await new userProfile({
+                name: name,
+                mobileNumber: mobileNumber ,
+                whatsappNumber: whatsappNumber,
+                facebookID: facebookID,
+                instagramID: instagramID,
+    
+    
+            })
+
+
+            if(!user)
+            {
+                res.status(500).json(
+                    {
+                        status: false,
+                        message: "User Not Created"
+                    }
+                )
+            }
+            else 
+            {
+                await user.save();
+                res.status(200).json(
+                    {
+                        status: true,
+                        message: "User is created!"
+                    }
+                )
+                
+            }
+            console.log(user)
+
+
+            
+            
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
+    console.log(req.body);
+
+
+    
+})
+
+
 router.post('/addProfile/:userID',upload.fields([
     {
         name: 'profileImage', maxCount: 1
