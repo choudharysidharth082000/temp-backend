@@ -33,15 +33,6 @@ router.post('/login',async (req, res)=>
     const ip = req.socket.remoteAddress;
     
 
-
-    // To check in postman use this below code and comment above
-
-    // const first=req.body.firstName;
-    // const last=req.body.lastName;
-    // const email=req.body.email;
-    // const photo=req.body.photo;
-    // const ip= req.body.ip;
-
     
 
     

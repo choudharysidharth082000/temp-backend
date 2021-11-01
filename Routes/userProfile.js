@@ -2,8 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 const upload = require('../multer Configurations/multer');
-const validateProfile = require('../validators/profileValidator');
-const {userProfile} = require('../models/userProfile');
+const validateProfile = require('../validators/profileValidator')
+const {userProfile} = require('../models/userProfile')
 const {user} = require('../models/Auth');
 const fs = require('fs');
 
@@ -242,50 +242,76 @@ router.get('/profileGet/:userID', async(req, res)=>
     }
 })
 
-router.delete('/deleteProfile/:userID', async(req, res)=>
-{
-    try {
-        const user = await userProfile.findOne({_id: req.params.userID});
-        if(!user)
-        {
-            res.status(200).json(
-                {
-                    status: false,
-                    message: "User not found"
-                }
-            )
-        }
-        else 
-        {
-            const deleteUser = await userProfile.findOneAndDelete({_id: req.params.userID});
-            if(!deleteUser)
-            {
-                res.status(200).json(
-                    {
-                        status: false,
-                        message : "User is not deleted"
-                    }
-                )
-            }
-            else 
-            {
-                res.status(200).json(
-                    {
-                        status: true,
-                        message: "User is deleted Successfuly",
-                        id: user._id
-                    }
-                )
-            }
-        }
+// router.delete('/deleteProfile/:userID', async(req, res)=>
+// {
+//     try {
+//         const user = await userProfile.findOne({_id: req.params.userID});
+//         if(!user)
+//         {
+//             res.status(200).json(
+//                 {
+//                     status: false,
+//                     message: "User not found"
+//                 }
+//             )
+//         }
+//         else 
+//         {
+//             const deleteUser = await userProfile.findOneAndDelete({_id: req.params.userID});
+//             if(!deleteUser)
+//             {
+//                 res.status(200).json(
+//                     {
+//                         status: false,
+//                         message : "User is not deleted"
+//                     }
+//                 )
+//             }
+//             else 
+//             {
+//                 res.status(200).json(
+//                     {
+//                         status: true,
+//                         message: "User is deleted Successfuly",
+//                         id: user._id
+//                     }
+//                 )
+//             }
+//         }
         
         
-    } catch (error) {
+//     } catch (error) {
 
-        console.log(error);
+//         console.log(error);
         
-    }
-})
+//            status: true,
+//                         message: "User is deleted Successfuly",
+//                         id: user._id
+//                     }
+//                 )
+//             }
+//         }
+        
+        
+//     } catch (error) {
+
+//         console.log(error);
+        
+//             status: true,
+//                         message: "User is deleted Successfuly",
+//                         id: user._id
+//                     }
+//                 )
+//             }
+//         }
+        
+        
+//     } catch (error) {
+
+//         console.log(error);
+        
+//     }
+// })
 
 
 module.exports = router
